@@ -22,11 +22,21 @@ const Index = () => {
               Digitalkan pencatatan keterlambatan siswa dengan notifikasi otomatis ke orang tua dan wali kelas melalui WhatsApp
             </p>
             <div className="flex flex-wrap justify-center gap-4">
-              <Button size="lg" variant="secondary" className="shadow-lg">
+              <Button 
+                size="lg" 
+                variant="secondary" 
+                className="shadow-lg"
+                onClick={() => window.location.href = '/auth'}
+              >
                 Masuk ke Sistem
               </Button>
-              <Button size="lg" variant="outline" className="border-white/20 bg-white/10 text-white hover:bg-white/20 backdrop-blur-sm">
-                Pelajari Lebih Lanjut
+              <Button 
+                size="lg" 
+                variant="outline" 
+                className="border-white/20 bg-white/10 text-white hover:bg-white/20 backdrop-blur-sm"
+                onClick={() => window.location.href = '/dashboard'}
+              >
+                Dashboard
               </Button>
             </div>
           </div>
