@@ -6,12 +6,14 @@ import { LogOut, GraduationCap } from "lucide-react";
 import { toast } from "sonner";
 import QuickInputForm from "@/components/dashboard/QuickInputForm";
 import TodayRecords from "@/components/dashboard/TodayRecords";
+import { useUserRole } from "@/hooks/useUserRole";
 
 const Dashboard = () => {
   const navigate = useNavigate();
   const [user, setUser] = useState<any>(null);
   const [profile, setProfile] = useState<any>(null);
   const [loading, setLoading] = useState(true);
+  const { role, loading: roleLoading } = useUserRole(user?.id);
 
   useEffect(() => {
     checkUser();
@@ -55,7 +57,7 @@ const Dashboard = () => {
     }
   };
 
-  if (loading) {
+  if (loading || roleLoading) {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
@@ -65,6 +67,16 @@ const Dashboard = () => {
       </div>
     );
   }
+
+  const getRoleLabel = (role: string | null) => {
+    switch (role) {
+      case 'admin': return 'Admin';
+      case 'guru_piket': return 'Guru Piket';
+      case 'wali_kelas': return 'Wali Kelas';
+      case 'kepala_sekolah': return 'Kepala Sekolah';
+      default: return role;
+    }
+  };
 
   return (
     <div className="min-h-screen bg-background">
@@ -78,7 +90,7 @@ const Dashboard = () => {
               </div>
               <div>
                 <h1 className="text-xl font-bold">SI-PATAS</h1>
-                <p className="text-sm text-muted-foreground">Dashboard {profile?.role === 'guru_piket' ? 'Guru Piket' : profile?.role}</p>
+                <p className="text-sm text-muted-foreground">Dashboard {getRoleLabel(role)}</p>
               </div>
             </div>
             <div className="flex items-center gap-4">
@@ -86,6 +98,11 @@ const Dashboard = () => {
                 <p className="font-medium">{profile?.full_name}</p>
                 <p className="text-sm text-muted-foreground">{user?.email}</p>
               </div>
+              {role === 'admin' && (
+                <Button variant="outline" onClick={() => navigate("/admin")}>
+                  Admin Panel
+                </Button>
+              )}
               <Button variant="outline" onClick={handleLogout}>
                 <LogOut className="h-4 w-4 mr-2" />
                 Logout
