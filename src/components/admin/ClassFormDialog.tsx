@@ -18,19 +18,19 @@ const ClassFormDialog = ({ open, onOpenChange, classData, onSuccess }: ClassForm
   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
-    grade: "10",
+    grade: "7",
   });
 
   useEffect(() => {
     if (classData) {
       setFormData({
         name: classData.name || "",
-        grade: classData.grade?.toString() || "10",
+        grade: classData.grade?.toString() || "7",
       });
     } else {
       setFormData({
         name: "",
-        grade: "10",
+        grade: "7",
       });
     }
   }, [classData, open]);
@@ -84,7 +84,7 @@ const ClassFormDialog = ({ open, onOpenChange, classData, onSuccess }: ClassForm
             <Input
               id="name"
               required
-              placeholder="Contoh: X-A, XI-B, XII-C"
+              placeholder="Contoh: VII-A, VIII-B, IX-C"
               value={formData.name}
               onChange={(e) => setFormData({ ...formData, name: e.target.value })}
             />
@@ -97,9 +97,9 @@ const ClassFormDialog = ({ open, onOpenChange, classData, onSuccess }: ClassForm
                 <SelectValue />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="10">Kelas 10</SelectItem>
-                <SelectItem value="11">Kelas 11</SelectItem>
-                <SelectItem value="12">Kelas 12</SelectItem>
+                <SelectItem value="7">Kelas 7</SelectItem>
+                <SelectItem value="8">Kelas 8</SelectItem>
+                <SelectItem value="9">Kelas 9</SelectItem>
               </SelectContent>
             </Select>
           </div>
