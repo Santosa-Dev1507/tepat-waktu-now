@@ -38,7 +38,7 @@ const Admin = () => {
   };
 
   useEffect(() => {
-    if (!loading && !roleLoading && role !== 'admin') {
+    if (!loading && !roleLoading && role && role !== 'admin') {
       toast.error("Akses ditolak. Hanya admin yang dapat mengakses halaman ini.");
       navigate("/dashboard");
     }
