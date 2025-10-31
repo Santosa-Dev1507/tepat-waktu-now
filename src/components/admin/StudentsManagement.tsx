@@ -6,6 +6,7 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { toast } from "sonner";
 import { Plus, Pencil, Trash2 } from "lucide-react";
 import StudentFormDialog from "./StudentFormDialog";
+import ImportStudentsDialog from "./ImportStudentsDialog";
 
 const StudentsManagement = () => {
   const [students, setStudents] = useState<any[]>([]);
@@ -85,10 +86,13 @@ const StudentsManagement = () => {
               <CardTitle>Data Siswa</CardTitle>
               <CardDescription>Kelola data siswa sekolah</CardDescription>
             </div>
-            <Button onClick={handleAdd}>
-              <Plus className="h-4 w-4 mr-2" />
-              Tambah Siswa
-            </Button>
+            <div className="flex gap-2">
+              <ImportStudentsDialog onSuccess={fetchStudents} />
+              <Button onClick={handleAdd}>
+                <Plus className="h-4 w-4 mr-2" />
+                Tambah Siswa
+              </Button>
+            </div>
           </div>
         </CardHeader>
         <CardContent>
