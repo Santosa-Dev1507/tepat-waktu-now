@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
-import { LogOut, GraduationCap } from "lucide-react";
+import { LogOut, GraduationCap, BarChart3 } from "lucide-react";
 import { toast } from "sonner";
 import QuickInputForm from "@/components/dashboard/QuickInputForm";
 import TodayRecords from "@/components/dashboard/TodayRecords";
@@ -98,6 +98,10 @@ const Dashboard = () => {
                 <p className="font-medium">{profile?.full_name}</p>
                 <p className="text-sm text-muted-foreground">{user?.email}</p>
               </div>
+              <Button variant="outline" onClick={() => navigate("/analytics")}>
+                <BarChart3 className="h-4 w-4 mr-2" />
+                Analitik
+              </Button>
               {role === 'admin' && (
                 <Button variant="outline" onClick={() => navigate("/admin")}>
                   Admin Panel
